@@ -1,123 +1,313 @@
+import React from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
+import { Header1 } from '@/components/headers/header_1'
+import { Header2 } from '@/components/headers/header_2'
+import { Hero1 } from '@/components/body/hero/hero_1'
+import { Hero2 } from '@/components/body/hero/hero_2'
+import { Hero3 } from '@/components/body/hero/hero_3'
+import { Footer1 } from '@/components/footers/footer_1'
+import { Footer2 } from '@/components/footers/footer_2'
+import { Footer3 } from '@/components/footers/footer_3'
+import { Container } from '@mantine/core'
+import { Feature1 } from '@/components/body/feature/feature_1'
+import { Feature2 } from '@/components/body/feature/feature_2'
+import { Feature3 } from '@/components/body/feature/feature_3'
+import { Faq1 } from '@/components/body/faq/faq_1'
+import { Faq2 } from '@/components/body/faq/faq_2'
+import { Faq3 } from '@/components/body/faq/faq_3'
+import { Contact1 } from '@/components/body/contact/contact_1'
+import { Contact2 } from '@/components/body/contact/contact_2'
+import { Contact3 } from '@/components/body/contact/contact_3'
+import { Carousel1 } from '@/components/body/carousel_1'
 
-const inter = Inter({ subsets: ['latin'] })
+const LINKS = [
+  { label: 'Menu 1', link: '1' },
+  { label: 'Menu 2', link: '2' },
+]
 
-export default function Home() {
+const DATA = [
+  {
+    title: 'Test',
+    links: [
+      { label: 'Menu 1', link: '1' },
+      { label: 'Menu 2', link: '2' },
+    ],
+  },
+]
+
+// main engine for communicate with comp
+const COMPONENTS_LIBRARY: any = {
+  header: [
+    {
+      id: 'h-01',
+      type: 'header',
+      comp: <Header1 mainLinks={LINKS} userLinks={LINKS} />,
+    },
+    {
+      id: 'h-02',
+      type: 'header',
+      comp: <Header2 links={LINKS} />,
+    },
+  ],
+  body: [
+    {
+      id: 'b-01',
+      type: 'hero',
+      comp: <Hero1 />,
+    },
+    {
+      id: 'b-02',
+      type: 'hero',
+      comp: <Hero2 />,
+    },
+    {
+      id: 'b-03',
+      type: 'hero',
+      comp: <Hero3 />,
+    },
+    {
+      id: 'b-04',
+      type: 'carousel',
+      comp: <Carousel1 />,
+    },
+    {
+      id: 'b-05',
+      type: 'contact',
+      comp: <Contact1 />,
+    },
+    {
+      id: 'b-06',
+      type: 'contact',
+      comp: <Contact2 />,
+    },
+    {
+      id: 'b-07',
+      type: 'contact',
+      comp: <Contact3 />,
+    },
+    {
+      id: 'b-08',
+      type: 'feature',
+      comp: <Feature1 />,
+    },
+    {
+      id: 'b-09',
+      type: 'feature',
+      comp: <Feature2 />,
+    },
+    {
+      id: 'b-10',
+      type: 'feature',
+      comp: <Feature3 />,
+    },
+    {
+      id: 'b-11',
+      type: 'faq',
+      comp: <Faq1 />,
+    },
+    {
+      id: 'b-12',
+      type: 'faq',
+      comp: <Faq2 />,
+    },
+    {
+      id: 'b-13',
+      type: 'faq',
+      comp: (
+        <Faq3
+          categories={[
+            { image: 'https://vitejs.dev/logo.svg', label: 'Sample' },
+          ]}
+        />
+      ),
+    },
+  ],
+  footer: [
+    {
+      id: 'f-01',
+      type: 'hero',
+      comp: <Footer1 links={LINKS} />,
+    },
+    {
+      id: 'f-02',
+      type: 'hero',
+      comp: <Footer2 data={DATA} />,
+    },
+    {
+      id: 'f-03',
+      type: 'hero',
+      comp: <Footer3 />,
+    },
+  ],
+}
+
+const generateRandomScheme = () => {
+  // generate random sheme here
+}
+
+const ExperimentalPage: React.FC = () => {
+  // single page schema
+  const appSchema = {
+    app: {
+      appId: 'uuid',
+      appType: 'Store',
+      description: 'app description',
+    },
+    user: { id: '', email: '' },
+    pages: [
+      {
+        pageName: 'Page 1',
+        pageId: 'short-uuid',
+        pageContext: '',
+        screenComponents: [
+          {
+            compId: 'h-01',
+            compType: 'header',
+            description: 'flat navbar',
+            properties: {
+              //dynamic
+              colorScheme: '',
+              logo: '',
+              title: '',
+              submenu: [{ id: '', target: '' }],
+              action: [{ id: '', target: '' }],
+            },
+          },
+          {
+            compId: 'b-02',
+            compType: 'body',
+            description: 'hero',
+            properties: {
+              //dynamic
+              colorScheme: '',
+              logo: '',
+              title: '',
+              submenu: [{ id: '', target: '' }],
+              action: [{ id: '', target: '' }],
+            },
+          },
+          {
+            compId: 'b-04',
+            compType: 'body',
+            description: 'carousel',
+            properties: {
+              //dynamic
+              colorScheme: '',
+              logo: '',
+              title: '',
+              submenu: [{ id: '', target: '' }],
+              action: [{ id: '', target: '' }],
+            },
+          },
+          {
+            compId: 'b-08',
+            compType: 'body',
+            description: 'feature',
+            properties: {
+              //dynamic
+              colorScheme: '',
+              logo: '',
+              title: '',
+              submenu: [{ id: '', target: '' }],
+              action: [{ id: '', target: '' }],
+            },
+          },
+          {
+            compId: 'b-10',
+            compType: 'body',
+            description: 'feature',
+            properties: {
+              //dynamic
+              colorScheme: '',
+              logo: '',
+              title: '',
+              submenu: [{ id: '', target: '' }],
+              action: [{ id: '', target: '' }],
+            },
+          },
+
+          {
+            compId: 'b-11',
+            compType: 'body',
+            description: 'faq',
+            properties: {
+              //dynamic
+              colorScheme: '',
+              logo: '',
+              title: '',
+              submenu: [{ id: '', target: '' }],
+              action: [{ id: '', target: '' }],
+            },
+          },
+          {
+            compId: 'f-02',
+            compType: 'footer',
+            description: 'footer ',
+            properties: {
+              //dynamic
+              colorScheme: '',
+              logo: '',
+              title: '',
+              submenu: [{ id: '', target: '' }],
+              action: [{ id: '', target: '' }],
+            },
+          },
+        ],
+      },
+    ],
+  }
+
+  const generateComponent = (cs: any) => {
+    let CX: any[] = []
+    cs.forEach((element: any) => {
+      console.log(element.compType, element.compId)
+      COMPONENTS_LIBRARY[element.compType].forEach((component: any) => {
+        console.log({ component }, '=> from lib')
+        if (component.id == element.compId) {
+          CX.push(component)
+        }
+      })
+    })
+    return CX
+  }
+
+  const getComponent = (id: string, type: string) => {
+    COMPONENTS_LIBRARY[type].forEach((comp: any) => {
+      console.log({ comp }, '=> from lib')
+      if (comp.id == id) {
+        return comp.comp
+      } else {
+        return <p>No Component</p>
+      }
+    })
+  }
+
+  let [COMPX, setCOMPX] = React.useState<any[]>()
+  React.useEffect(() => {
+    if (!appSchema) return
+    const comps = appSchema.pages.flatMap((comp) => comp.screenComponents)
+    const component = generateComponent(comps)
+    console.log({ component })
+    setCOMPX(component)
+  }, [])
+
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Daymaker Experimental</title>
         <meta name="description" content="Generated by create next app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+      {/* HEADER_SECTION  */}
+      {/* {JSON.stringify(appSchema.pages)} */}
+      {/* {JSON.stringify(COMPX)} */}
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      <Container>{COMPX?.map((el: any) => el.comp)}</Container>
+      {/* BODY_SECTION */}
+      {/* FOOTER_SECTION */}
     </>
   )
 }
+
+export default ExperimentalPage
